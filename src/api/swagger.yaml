@@ -1,0 +1,160 @@
+swagger: "2.0"
+info:
+  description: "API encargada de realizar autenticacion de usuario"
+  version: "0.0.1"
+  title: "API Authorization"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "di.floresr@duocuc.cl"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/Authorizations/v1"
+tags:
+- name: "login"
+  description: "Operacion para realizar login de usuario"
+- name: "health"
+  description: "Operacion para verificar estado de la API"
+schemes:
+- "https"
+- "http"
+security:
+  - ApiKeyAuth: []
+paths:
+  /healthcheck:
+    get:
+      tags:
+        - "health"
+      summary: "Verifica estado de la API"
+      description: ""
+      consumes:
+      - "application/json"
+      responses:
+        "200":
+          description: "Devuelve estado de la API"
+          schema:
+            $ref: "#/definitions/Health"
+  /login:
+    post:
+      tags:
+        - "login"
+      summary: "Realiza login de usuario"
+      description: ""
+      consumes:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "channel"
+        type: "string"
+        required: true
+        description: "Codigo del canal"
+      - in: "header"
+        name: "transaction-id"
+        type: "string"
+        required: true
+        description: "ID de la transaccion"
+      - in: "header"
+        name: "timestamp"
+        type: "string"
+        format: "date-time"
+        required: true
+        description: "Fecha y hora de la transaccion"
+      - in: "body"
+        name: "login"
+        description: "Cuerpo de la solicitud"
+        required: true
+        schema:
+          $ref: "#/definitions/RequestLogin"
+      responses:
+        "200":
+          description: "Devuelve un token de autorizacion"
+          schema:
+            $ref: "#/definitions/ResponseLogin"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        "401":
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable Entity"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  RequestLogin:
+    type: "object"
+    properties:
+      data:
+        $ref: "#/definitions/RequestLoginData"
+    required:
+      - data
+  RequestLoginData:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        description: "Nombre de usuario"
+        example: "usuario.test@test.com"
+      password:
+        type: "string"
+        description: "Password de usuario"
+        example: "12345"
+    required:
+      - username
+      - password
+  ResponseLogin:
+    type: "object"
+    properties:
+      data:
+        $ref: "#/definitions/ResponseLoginData"
+  ResponseLoginData:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+        description: "Token de autenticacion"
+        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "Codigo de error"
+      message:
+        type: "string"
+        description: "Mensaje de error"
+  Health:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        description: "Estado de la API"
+        example: "API Authentications is up"
+      version:
+        type: "string"
+        description: "Version de la API"
+        example: "1.0.0"
+      date:
+        type: "string"
+        description: "Fecha de la solicitud"
+        example: "Wed Sep 15 2021 17:08:11 GMT-0300 (hora de verano de Chile)"
+      uptime:
+        type: "number"
+        description: "Tiempo de respuesta"
+        example: 658.1269089
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: x-api-key
+    description: "Credencial de acceso de la API"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
