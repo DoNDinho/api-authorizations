@@ -13,7 +13,7 @@ _API para autenticacion de usuario_
 _Para instalar dependencias ejecute el siguiente comando_
 
 ```
-$ npm install
+$ npm install 
 ```
 
 _Crea un archivo .env la raíz del proyecto con las siguientes variables:_
