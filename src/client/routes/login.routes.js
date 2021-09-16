@@ -24,13 +24,13 @@ router.post(`${basePath}/v1/login`, [headersValidation, loginValidation], (req, 
 	let userRol
 	switch (username) {
 		case username01:
-			userRol = 'ADMIN'
+			userRol = 1
 			break
 		case username02:
-			userRol = 'PROFESIONAL'
+			userRol = 2
 			break
 		case username03:
-			userRol = 'CLIENTE'
+			userRol = 3
 			break
 		default:
 			return res.status(401).json({
@@ -44,7 +44,7 @@ router.post(`${basePath}/v1/login`, [headersValidation, loginValidation], (req, 
 		data: {
 			token:
 				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-			user_rol: userRol
+			user_rol: userRol.toString()
 		}
 	})
 })

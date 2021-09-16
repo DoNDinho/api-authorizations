@@ -121,6 +121,10 @@ definitions:
         type: "string"
         description: "Token de autenticacion"
         example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+      user_rol:
+        type: "string"
+        description: "Rol de usuario"
+        example: "1"
   Error:
     type: "object"
     properties:
