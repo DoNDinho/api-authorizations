@@ -19,6 +19,11 @@ $ npm install
 _Crea un archivo .env la raíz del proyecto con las siguientes variables:_
 
 -   `PORT`: Puerto del servidor
+-   `ORACLE_DB_USER`: Usuario de base de datos
+-   `ORACLE_DB_PASSWORD`: Password de base de datos
+-   `ORACLE_DB_HOST`: Host de base de datos
+-   `JWT_SIGNATURE`: Firma de token JWT
+-   `JWT_EXPIRATION`: Expiracion de token JWT
 
 _Ejecuta el servidor:_
 

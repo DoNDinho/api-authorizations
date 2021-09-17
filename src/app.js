@@ -10,6 +10,7 @@ const bodyParser = require('body-parser')
 global.logger = require('./business/utils/configs/log4js.config')
 const loginRoutes = require('./client/routes/login.routes')
 const healthRoute = require('./client/routes/health')
+const { errorHandler } = require('./client/middlewares/error-handler/error-handler')
 const port = process.env.PORT
 
 const app = express()
@@ -23,6 +24,9 @@ app.use(bodyParser.json())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use(healthRoute)
 app.use(loginRoutes)
+app.use(async (err, req, res, next) => {
+	await errorHandler(err, res)
+})
 
 // Iniciando servidor
 app.listen(port, () => {
