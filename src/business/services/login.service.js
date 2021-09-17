@@ -2,14 +2,14 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const loginRepository = require('../../data/repository/login.repository')
+const loginConverter = require('../converter/login.converter')
 
 const login = async (data) => {
 	try {
-		// TODO falta agregar el converter para la respuesta
 		const userData = await authenticateUser(data.username)
 		validatePassword(data.password, userData.P_PASSWORD)
 		const token = generateToken(data.username, userData)
-		return { token, userData: userData.P_ROL }
+		return loginConverter.parseLoginResponse(token, userData)
 	} catch (error) {
 		throw error
 	}

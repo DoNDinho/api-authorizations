@@ -11,13 +11,8 @@ router.post(`${basePath}/v1/login`, [headersValidation, loginValidation], async 
 		const transactionId = req.headers['transaction-id']
 		logger.addContext('transaction_id', transactionId)
 		const response = await loginService.login(req.body.data)
-		res.json({
-			data: {
-				token: response.token,
-				user_rol: response.userData
-			}
-		})
-		logger.info('Respuesta login exitosa')
+		logger.info({ message: 'Login exitoso', data: response })
+		res.json(response)
 	} catch (error) {
 		next(error)
 	}
