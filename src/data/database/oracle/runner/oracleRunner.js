@@ -8,6 +8,7 @@ class OracleRunner extends RunnerStrategy {
 	}
 
 	async runProcedure(procedure) {
+		console.log('Entrando a oracle runner') // TODO borrar esto
 		try {
 			// TODO Validar donde colocar conexion a base de datos
 			const connection = await oracledb.getConnection({
