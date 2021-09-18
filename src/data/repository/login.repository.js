@@ -5,7 +5,8 @@ const sqlProcedures = require('../database/oracle/sql_procedures')
 const authenticateUser = async (email) => {
 	try {
 		logger.info('Entrando a login repository') // TODO borrar esto
-		//const database = new Runner()
+		const database = new Runner()
+		logger.info('La base de dstos es: ', database) //TODO borrar esto
 		const procedure = sqlProcedures.authenticateUser(email)
 		logger.info('El procedimiento es ', JSON.stringify(procedure)) // TODO borrar esto
 		//const result = await database.runProcedure(procedure)
