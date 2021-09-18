@@ -25,7 +25,7 @@ class OracleRunner extends RunnerStrategy {
 			await connection.close()
 			return result
 		} catch (error) {
-			console.log(error)
+			logger.error(error)
 		}
 	}
 }
