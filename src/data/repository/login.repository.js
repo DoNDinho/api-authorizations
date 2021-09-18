@@ -8,7 +8,6 @@ const authenticateUser = async (email) => {
 		const database = new Runner()
 		const procedure = sqlProcedures.authenticateUser(email)
 		const result = await database.runProcedure(procedure)
-		logger.info('Saliendo login repository') // TODO borrar esto
 		return result.outBinds
 	} catch (error) {
 		console.log('REPOSITORY ', error)
