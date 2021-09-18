@@ -17,7 +17,9 @@ const login = async (data) => {
 
 const authenticateUser = async (email) => {
 	try {
+		logger.info('Voy a entrar al repository')
 		const result = await loginRepository.authenticateUser(email)
+		logger.info('RESUL: ', JSON.stringify(result))
 
 		logger.info('Validando existencia de usuario')
 		if (result.P_CODIGO !== '000') {
