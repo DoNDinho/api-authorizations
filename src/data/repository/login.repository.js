@@ -9,7 +9,7 @@ const authenticateUser = async (email) => {
 		logger.info('La base de dstos es: ', database) //TODO borrar esto
 		const procedure = sqlProcedures.authenticateUser(email)
 		logger.info('El procedimiento es ', JSON.stringify(procedure)) // TODO borrar esto
-		//const result = await database.runProcedure(procedure)
+		const result = await database.runProcedure(procedure)
 		logger.info('Saliendo login repository') // TODO borrar esto
 		//return result.outBinds
 		return {
