@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   description: "API encargada de realizar autenticacion de usuario"
-  version: "0.0.1"
+  version: "1.0.0"
   title: "API Authorization"
   termsOfService: "http://swagger.io/terms/"
   contact:
