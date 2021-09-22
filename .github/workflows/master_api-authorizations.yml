@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
-        registry: https://authorizations.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_9de67a775d324d4d970ba4e6bf0dafd0 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_941f9550aa464db4af2733c854ba8678 }}
+        registry: https://portafolio.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_6e26d40b487d477fa4206a46f21d1070 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_4c5354fe1f124d2ca9cebe314f7f4afd }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: authorizations.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_9de67a775d324d4d970ba4e6bf0dafd0 }}/portafolio/api-authorizations:${{ github.sha }}
+        tags: portafolio.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6e26d40b487d477fa4206a46f21d1070 }}/api-authorizations:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'api-authorizations'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e9b4f780f144486ebb615ee8bce59ba1 }}
-        images: 'authorizations.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_9de67a775d324d4d970ba4e6bf0dafd0 }}/portafolio/api-authorizations:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bfad5966c0534a44a0298c8fcdc50447 }}
+        images: 'portafolio.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_6e26d40b487d477fa4206a46f21d1070 }}/api-authorizations:${{ github.sha }}'
