@@ -1,8 +1,14 @@
 'use strict'
 const parseLoginResponse = (token, userData) => {
 	return {
-		token,
-		user_rol: userData.P_ROL
+		token: token.token,
+		expires_in: token.expiresIn,
+		user: {
+			role: {
+				code: parseInt(userData['@ROL']),
+				name: userData['@DESCRIPCION']
+			}
+		}
 	}
 }
 
