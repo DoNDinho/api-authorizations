@@ -5,6 +5,7 @@ require('dotenv').config()
 const bodyParser = require('body-parser')
 global.logger = require('./business/utils/configs/log4js.config')
 const loginRoutes = require('./client/routes/login.routes')
+const authorizationRoutes = require('./client/routes/authorizations.routes')
 const healthRoute = require('./client/routes/health')
 const { errorHandler } = require('./client/middlewares/error-handler/error-handler')
 const port = process.env.PORT
@@ -19,6 +20,7 @@ app.use(bodyParser.json())
 // Configurando rutas
 app.use(healthRoute)
 app.use(loginRoutes)
+app.use(authorizationRoutes)
 app.use(async (err, req, res, next) => {
 	await errorHandler(err, res)
 })
