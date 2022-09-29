@@ -8,15 +8,18 @@ class MySqlClient {
 
 	static async getInstance() {
 		if (!MySqlClient.instance) {
-			const connection = await mysql.createConnection({
+			const pool = mysql.createPool({
 				host: process.env.MYSQL_HOST,
 				user: process.env.MYSQL_USER,
 				password: process.env.MYSQL_PASS,
 				database: process.env.MYSQL_DATABASE,
-				multipleStatements: true
+				multipleStatements: true,
+				waitForConnections: true
 			})
-			MySqlClient.instance = new MySqlClient(connection)
+
+			MySqlClient.instance = new MySqlClient(pool)
 		}
+
 		return MySqlClient.instance
 	}
 

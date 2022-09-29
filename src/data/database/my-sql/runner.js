@@ -14,7 +14,7 @@ class MySqlRunner {
 				const [rows] = await this.connection.execute(statement, procedure.values)
 				result.push(rows)
 			}
-			// this.close()
+			// await this.close()
 			return result
 		} catch (error) {
 			console.log(`error al ejecutar procedimiento ${procedure.name}. ${error.message}`)
